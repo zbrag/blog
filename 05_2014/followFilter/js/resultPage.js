@@ -1,32 +1,56 @@
 $(document).ready(function() {
 
-    // refactoren naar een aanroepbaar bestand, we moeten de huidige pagina meegeven!
     var val = JSON.parse(sessionStorage.getItem('searchPath'));
 
-    if (val)
-    {
-        console.log(val);
+    if (val) {
         var current = null;
         var previous = null;
         var next = null;
-        $.each(val,function(key,value){
+        var showSearchPath = false;
+        var pageid = $('body div').data('pageid');
+        var searchPathelement = $('#searchPath');
+        $.each(val, function (key, value) {
 
-            if(value == "/page.php?pageId=7")
-            {
+            if (value == pageid) {
                 current = value;
             }
-            else if(current != null && previous != null && next == null)
-            {
+            else if (current != null && previous != null && next == null) {
+                // we found the value for 'next'
                 next = value;
+
             }
 
-            if(current == null)
-            {
+            if (current == null) {
+                // because previous is the one /before/ current, we always set this one, until current is found
                 previous = value;
             }
 
-
         });
+
+        // If previous is found we want to show it, and also show the #searchPath element.
+        if (previous) {
+            searchPathelement.find('.prev').attr('href', previous);
+            searchPathelement.find('.next').show();
+            showSearchPath = true;
+        }
+        else {
+            searchPathelement.find('.prev').hide();
+        }
+
+        // If next is found we want to show it, and also the #searchPath element
+        if (next) {
+            searchPathelement.find('.next').attr('href', next);
+            searchPathelement.find('.next').show();
+            showSearchPath = true;
+        }
+        else {
+            searchPathelement.find('.next').hide();
+        }
+
+        // So if we have prev or next links, we want to show the block
+        if (showSearchPath) {
+            searchPathelement.show();
+        }
         // Debug:
         // console.log('current == ' + current + ', previous == ' + previous + ',next == ' + next);
     }
