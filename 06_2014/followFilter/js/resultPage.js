@@ -30,11 +30,8 @@ $(document).ready(function() {
         // If previous is found we want to show it, and also show the #searchPath element.
         if (previous) {
             searchPathelement.find('.prev').attr('href', previous);
-            searchPathelement.find('.next').show();
+            searchPathelement.find('.prev').show();
             showSearchPath = true;
-        }
-        else {
-            searchPathelement.find('.prev').hide();
         }
 
         // If next is found we want to show it, and also the #searchPath element
@@ -42,9 +39,6 @@ $(document).ready(function() {
             searchPathelement.find('.next').attr('href', next);
             searchPathelement.find('.next').show();
             showSearchPath = true;
-        }
-        else {
-            searchPathelement.find('.next').hide();
         }
 
         // So if we have prev or next links, we want to show the block

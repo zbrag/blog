@@ -10,7 +10,7 @@ if(is_numeric($page)) // just a little saveguard
     <head lang="en">
         <meta charset="UTF-8">
         <title>Test page for filterpage.js</title>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="js/resultPage.js"></script>
     </head>
     <body>
@@ -18,8 +18,9 @@ if(is_numeric($page)) // just a little saveguard
             <?= $message ?>
         </div>
         <div id="searchPath" style="display: none">
-            <a href="#" class="next">Next result</a>
-            <a href="#" class="prev">Previous result</a>
+            These are the current options for your journey:
+            <a href="#" class="next" style="display: none;">Next result</a>
+            <a href="#" class="prev" style="display: none;">Previous result</a>
         </div>
     </body>
 </html>
