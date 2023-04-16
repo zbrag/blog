@@ -1,4 +1,4 @@
 blog
 ====
 
-Examples from my blogpostings located @ http://oizys.org
+Examples from my blogpostings located @ https://oizys.org
