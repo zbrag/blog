@@ -1,9 +1,13 @@
 <template>
-    <div class="container">
+    <div class="container m-2">
         <div class="row">
+            <div v-if="resultClass" class="alert" :class="this.resultClass" role="alert">
+                {{ result }}
+            </div>
+
             <div class="col-12 col-lg-6">
                 <h2>Player</h2>
-                <div class="options">
+                <div>
                     <button @click="choose('rock')"><i class="fas fa-hand-rock fa-5x"></i></button>
                     <button @click="choose('paper')"><i class="fas fa-hand-paper fa-5x"></i></button>
                     <button @click="choose('scissors')"><i class="fas fa-hand-scissors fa-5x"></i></button>
@@ -24,14 +28,6 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row" v-if="result">
-            <div class="col-12">
-                <h2>{{ result }}</h2>
-                <button @click="reset()">Play again</button>
-            </div>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -41,7 +37,8 @@ export default {
             choices: ['rock', 'paper', 'scissors', 'lizard', 'spock'],
             playerChoice: null,
             computerChoice: null,
-            result: null
+            result: null,
+            resultClass: null
         };
     },
     methods: {
@@ -55,14 +52,17 @@ export default {
             const computer = this.computerChoice;
             if (player === computer) {
                 this.result = 'Tie!';
+                this.resultClass = 'alert-warning';
             } else if ((player === 'rock' && (computer === 'scissors' || computer === 'lizard')) ||
                 (player === 'paper' && (computer === 'rock' || computer === 'spock')) ||
                 (player === 'scissors' && (computer === 'paper' || computer === 'lizard')) ||
                 (player === 'lizard' && (computer === 'paper' || computer === 'spock')) ||
                 (player === 'spock' && (computer === 'rock' || computer === 'scissors'))) {
                 this.result = 'You win!';
+                this.resultClass = 'alert-success';
             } else {
                 this.result = 'You lose!';
+                this.resultClass = 'alert-danger'
             }
         },
         reset() {
@@ -73,28 +73,3 @@ export default {
     }
 }
 </script>
-
-<style>
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100vh;
-}
-
-.player,
-.computer {
-    width: 45%;
-    text-align: center;
-}
-
-.options {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.choice {
-    margin-top: 20px;
-}
-</style>
