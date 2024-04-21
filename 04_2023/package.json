@@ -48,6 +48,6 @@
     "bootstrap": "^5.1.3",
     "core-js": "^3.10.0",
     "vue": "^3.2.31",
-    "whatwg-fetch": "^3.6.2"
+    "whatwg-fetch": "^3.6.20"
   }
 }
